@@ -12,14 +12,18 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system.statusItem(withLength: -1)
-    
     let statusView = StatusView(frame: NSRect(x: 0, y: 0, width: 36, height: 22))
+    let menu = NSMenu()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let menu = NSMenu()
-        statusItem.menu = menu
         statusItem.view = statusView
+        statusItem.menu = menu
+        menu.delegate = self
+        
+        statusView.delegate = self
+        
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         
         do {
             try SMCKit.open()
@@ -56,5 +60,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
+    }
+}
+
+extension AppDelegate: StatusViewDelegate {
+    
+    func didReceiveClick() {
+        statusItem.popUpMenu(menu)
+    }
+}
+
+extension AppDelegate: NSMenuDelegate {
+    
+    func menuDidClose(_ menu: NSMenu) {
+        statusView.setHighlighted(value: false)
     }
 }
