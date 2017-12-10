@@ -19,7 +19,7 @@ class StatusView: NSView {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         
-        Bundle.main.loadNibNamed("StatusView", owner: self, topLevelObjects: nil)
+        Bundle.main.loadNibNamed(NSNib.Name(rawValue: "StatusView"), owner: self, topLevelObjects: nil)
         self.view.frame = self.bounds
         
         leftFanIndicator.isIndeterminate = false

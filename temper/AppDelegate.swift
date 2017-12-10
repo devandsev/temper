@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let statusItem = NSStatusBar.system().statusItem(withLength: -1)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -1)
     
     let statusView = StatusView(frame: NSRect(x: 0, y: 0, width: 36, height: 22))
 
@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let alert = NSAlert()
             alert.messageText = "Couldn't open connection to the SMC driver!"
             alert.informativeText = error.localizedDescription
-            alert.alertStyle = NSAlertStyle.critical
+            alert.alertStyle = NSAlert.Style.critical
             alert.runModal()
         }
         
