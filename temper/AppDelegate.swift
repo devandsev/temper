@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let menu = NSMenu()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSApplication.shared.windows.first?.backgroundColor = NSColor.clear
         
         statusItem.view = statusView
         statusItem.menu = menu
